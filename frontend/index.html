@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Portfolio — Creative Developer Showcase</title>
+  <meta name="description" content="A stunning 3D animated portfolio showcase built with Three.js. Explore immersive 3D projects, interactive scenes, and creative development work." />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader"><div class="loader-ring"></div></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Background Orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Three.js Canvas -->
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬡ DIMENSION</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+    <a href="login.html" class="btn-glow" id="nav-cta">Enter Dashboard →</a>
+  </nav>
+
+  <!-- ── Hero Section ──────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-eyebrow">✦ &nbsp; Creative Developer &nbsp; ✦</div>
+      <h1 class="hero-title">
+        <span class="line">Crafting Digital</span>
+        <span class="line gradient-line">Dimensions</span>
+        <span class="line">In 3D Space</span>
+      </h1>
+      <p class="hero-subtitle">
+        Building immersive web experiences with Three.js, WebGL, and modern full-stack technologies.
+        Where code meets art.
+      </p>
+      <div class="hero-actions">
+        <a href="login.html" class="btn-glow" id="enter-btn">🚀 &nbsp; Enter Portfolio</a>
+        <a href="#work" class="btn-outline">View Work ↓</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- ── About Section ─────────────────────────────────────── -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <div class="section-label">// about</div>
+      <h2 class="section-title">Building the <span class="gradient-text">Future Web</span></h2>
+      <div class="section-divider"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+        <div>
+          <p style="color:var(--text-secondary);line-height:1.9;font-size:1.05rem;margin-bottom:1.5rem;">
+            I'm a full-stack developer passionate about the intersection of 3D graphics and web technology.
+            I specialize in creating immersive digital experiences that push the boundaries of what's possible in a browser.
+          </p>
+          <p style="color:var(--text-secondary);line-height:1.9;font-size:1.05rem;">
+            With expertise in Three.js, WebGL, and modern JavaScript frameworks, I transform complex ideas
+            into stunning interactive realities. Every pixel is crafted with purpose.
+          </p>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <div class="badge">⚡ Three.js Expert</div>
+            <div class="badge">🎨 WebGL</div>
+            <div class="badge">⬡ Node.js</div>
+            <div class="badge">✦ Creative Dev</div>
+          </div>
+        </div>
+        <div class="glass-card" style="padding:2rem;text-align:center;">
+          <canvas id="about-canvas" style="width:100%;height:220px;border-radius:0.75rem;"></canvas>
+          <p style="margin-top:1rem;color:var(--text-muted);font-size:0.8rem;font-family:var(--font-mono);">
+            // interactive_3d_demo.js
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills Section ────────────────────────────────────── -->
+  <section class="section" id="skills" style="background:rgba(255,255,255,0.01);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);">
+    <div class="section-inner">
+      <div class="section-label">// skills</div>
+      <h2 class="section-title">Tech <span class="gradient-text">Arsenal</span></h2>
+      <div class="section-divider"></div>
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">⬡</span><div class="skill-name">Three.js</div></div>
+        <div class="skill-card"><span class="skill-icon">🌐</span><div class="skill-name">WebGL</div></div>
+        <div class="skill-card"><span class="skill-icon">⚡</span><div class="skill-name">JavaScript</div></div>
+        <div class="skill-card"><span class="skill-icon">🔷</span><div class="skill-name">TypeScript</div></div>
+        <div class="skill-card"><span class="skill-icon">⚛</span><div class="skill-name">React</div></div>
+        <div class="skill-card"><span class="skill-icon">🟢</span><div class="skill-name">Node.js</div></div>
+        <div class="skill-card"><span class="skill-icon">🚀</span><div class="skill-name">Express</div></div>
+        <div class="skill-card"><span class="skill-icon">🐍</span><div class="skill-name">Python</div></div>
+        <div class="skill-card"><span class="skill-icon">🎨</span><div class="skill-name">GLSL</div></div>
+        <div class="skill-card"><span class="skill-icon">💎</span><div class="skill-name">CSS3</div></div>
+        <div class="skill-card"><span class="skill-icon">📦</span><div class="skill-name">Blender</div></div>
+        <div class="skill-card"><span class="skill-icon">🔮</span><div class="skill-name">WebXR</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Work Preview Section ──────────────────────────────── -->
+  <section class="section" id="work">
+    <div class="section-inner">
+      <div class="section-label">// featured work</div>
+      <h2 class="section-title">Selected <span class="gradient-text">Projects</span></h2>
+      <div class="section-divider"></div>
+      <div class="projects-preview" id="preview-grid">
+        <!-- Filled dynamically -->
+        <div class="project-preview-card glass-card">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#6366f1,#8b5cf6);"></div>
+          <canvas class="project-preview-canvas" id="preview-1"></canvas>
+          <div class="project-preview-title">Galaxy Explorer</div>
+          <p class="project-preview-desc">Interactive 3D galaxy visualization with particle-based star systems and real-time physics simulation.</p>
+        </div>
+        <div class="project-preview-card glass-card">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#06b6d4,#6366f1);"></div>
+          <canvas class="project-preview-canvas" id="preview-2"></canvas>
+          <div class="project-preview-title">Quantum Interface</div>
+          <p class="project-preview-desc">Procedurally generated wireframe landscapes with dynamic camera paths and custom GLSL shaders.</p>
+        </div>
+        <div class="project-preview-card glass-card">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#ec4899,#8b5cf6);"></div>
+          <canvas class="project-preview-canvas" id="preview-3"></canvas>
+          <div class="project-preview-title">Neural Nexus</div>
+          <p class="project-preview-desc">Real-time neural network visualization with animated data flows and interactive node graphs.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:3rem;">
+        <a href="login.html" class="btn-glow">View All Projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>Crafted with <span>♥</span> using Three.js + Node.js &nbsp;·&nbsp; <span>DIMENSION</span> Portfolio © 2024</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/particles.js"></script>
+  <script src="js/three-scene.js"></script>
+
+  <script>
+    // ── Loader ──
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('page-loader').classList.add('hidden');
+      }, 600);
+    });
+
+    // ── Navbar scroll effect ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Redirect if logged in ──
+    if (localStorage.getItem('token')) {
+      document.getElementById('nav-cta').href = '/dashboard.html';
+      document.getElementById('enter-btn').href = '/dashboard.html';
+    }
+
+    // ── About canvas mini scene ──
+    (function() {
+      const canvas = document.getElementById('about-canvas');
+      if (!canvas || typeof THREE === 'undefined') return;
+      const w = canvas.clientWidth || 400;
+      const h = 220;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(w, h);
+      const scene  = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(50, w/h, 0.1, 100);
+      camera.position.z = 4;
+      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+      const pl = new THREE.PointLight(0x6366f1, 5, 20); pl.position.set(3,3,3); scene.add(pl);
+      const pl2= new THREE.PointLight(0x06b6d4, 3, 15); pl2.position.set(-3,-2,2); scene.add(pl2);
+      const mesh = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(1.2, 1),
+        new THREE.MeshPhongMaterial({ color:0x6366f1, emissive:0x1a1a5e, shininess:80, wireframe:false, transparent:true, opacity:0.9 })
+      );
+      const wire = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(1.22, 1),
+        new THREE.MeshBasicMaterial({ color:0x8b5cf6, wireframe:true, transparent:true, opacity:0.15 })
+      );
+      scene.add(mesh, wire);
+      let t = 0;
+      (function loop() {
+        requestAnimationFrame(loop);
+        t += 0.01;
+        mesh.rotation.x = t * 0.4; mesh.rotation.y = t * 0.6;
+        wire.rotation.x = t * 0.4; wire.rotation.y = t * 0.6;
+        renderer.render(scene, camera);
+      })();
+    })();
+
+    // ── Preview card mini scenes ──
+    (function() {
+      const configs = [
+        { id: 'preview-1', shape: 'torusknot', color: 0x6366f1, color2: 0x8b5cf6 },
+        { id: 'preview-2', shape: 'torus',     color: 0x06b6d4, color2: 0x6366f1 },
+        { id: 'preview-3', shape: 'icosahedron', color: 0xec4899, color2: 0x8b5cf6 },
+      ];
+      configs.forEach(cfg => {
+        const canvas = document.getElementById(cfg.id);
+        if (!canvas) return;
+        const w = canvas.clientWidth || 300;
+        const h = 160;
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        renderer.setSize(w, h);
+        const scene  = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, w/h, 0.1, 100);
+        camera.position.z = 3.5;
+        scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+        const pl = new THREE.PointLight(cfg.color, 4, 20); pl.position.set(3,3,3); scene.add(pl);
+        const pl2= new THREE.PointLight(cfg.color2, 2, 15); pl2.position.set(-3,-2,2); scene.add(pl2);
+        let geo;
+        switch(cfg.shape) {
+          case 'torusknot': geo = new THREE.TorusKnotGeometry(0.7,0.22,80,16); break;
+          case 'torus':     geo = new THREE.TorusGeometry(0.8,0.3,16,50); break;
+          case 'icosahedron': geo = new THREE.IcosahedronGeometry(0.9,1); break;
+          default: geo = new THREE.IcosahedronGeometry(0.9,1);
+        }
+        const mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({ color:cfg.color, emissive:cfg.color, emissiveIntensity:0.15, shininess:100, transparent:true, opacity:0.9 }));
+        scene.add(mesh);
+        let t = 0;
+        (function loop() {
+          requestAnimationFrame(loop);
+          t += 0.012;
+          mesh.rotation.x = t*0.4; mesh.rotation.y = t*0.6;
+          renderer.render(scene, camera);
+        })();
+      });
+    })();
+
+    // ── Scroll-reveal animation ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.skill-card, .project-preview-card, .section-title, .section-label').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

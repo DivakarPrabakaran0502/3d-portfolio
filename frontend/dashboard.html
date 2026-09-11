@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — 3D Portfolio</title>
+  <meta name="description" content="Manage your 3D portfolio projects from your personal dashboard." />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <div id="toast-container"></div>
+
+  <div class="dashboard-wrapper">
+
+    <!-- ── Sidebar ─────────────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">⬡ DIMENSION</div>
+        <div class="sidebar-tagline">// portfolio.dashboard</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">workspace</div>
+        <a class="nav-item active" href="#" id="nav-projects">
+          <span class="nav-icon">⬡</span> Projects
+        </a>
+        <a class="nav-item" href="/" id="nav-home">
+          <span class="nav-icon">🏠</span> View Site
+        </a>
+
+        <div class="nav-section-label" style="margin-top:1.5rem;">account</div>
+        <a class="nav-item" href="#" id="nav-profile">
+          <span class="nav-icon">👤</span> Profile
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img class="user-avatar js-user-avatar" src="" alt="User Avatar" />
+          <div class="user-info">
+            <div class="user-name js-user-name">Loading...</div>
+            <div class="user-email js-user-email">...</div>
+          </div>
+          <button class="logout-btn" id="logout-btn" title="Sign Out">⏻</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ────────────────────────────────────── -->
+    <div class="main-content">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-title">
+          <span style="color:var(--text-muted)">Projects</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn-glow" id="add-btn">✦ &nbsp; Add Project</button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="content-area">
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+          <div class="stat-card">
+            <div class="stat-icon violet">⬡</div>
+            <div>
+              <div class="stat-value" id="stat-count">0</div>
+              <div class="stat-label">Total Projects</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon cyan">👁</div>
+            <div>
+              <div class="stat-value" id="stat-views">0</div>
+              <div class="stat-label">Total Views</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">📂</div>
+            <div>
+              <div class="stat-value" id="stat-categories">0</div>
+              <div class="stat-label">Categories</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon pink">✨</div>
+            <div>
+              <div class="stat-value" id="stat-streak">3D</div>
+              <div class="stat-label">Animation Mode</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid Header -->
+        <div class="grid-header">
+          <div class="grid-header-left">
+            <h2 style="font-size:1.1rem;font-weight:600;">My Portfolio</h2>
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="grid" title="Grid View">⊞</button>
+              <button class="view-btn" data-view="list" title="List View">☰</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid" id="portfolio-grid">
+          <div class="empty-state">
+            <div class="empty-state-icon">🌌</div>
+            <div class="empty-state-title">Loading your projects…</div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ── Add/Edit Project Modal ─────────────────────────────── -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" id="item-modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-title">New Project</div>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      </div>
+
+      <form class="modal-body" id="item-form" novalidate>
+        <!-- Title -->
+        <div class="form-group">
+          <label class="form-label" for="f-title">Project Title *</label>
+          <input class="form-input" type="text" id="f-title" placeholder="My Awesome 3D Project" required />
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label class="form-label" for="f-description">Description *</label>
+          <textarea class="form-textarea" id="f-description" placeholder="Describe your project, technologies used, and key features…" rows="3" required></textarea>
+        </div>
+
+        <!-- Category & Tags -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="f-category">Category</label>
+            <select class="form-select" id="f-category">
+              <option>Web Development</option>
+              <option>3D Design</option>
+              <option>Mobile App</option>
+              <option>UI/UX</option>
+              <option>Data Science</option>
+              <option>Game Dev</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-tags">Tags (comma-separated)</label>
+            <input class="form-input" type="text" id="f-tags" placeholder="three.js, webgl, react" />
+          </div>
+        </div>
+
+        <!-- URLs -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="f-liveUrl">Live URL</label>
+            <input class="form-input" type="url" id="f-liveUrl" placeholder="https://myproject.dev" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-githubUrl">GitHub URL</label>
+            <input class="form-input" type="url" id="f-githubUrl" placeholder="https://github.com/..." />
+          </div>
+        </div>
+
+        <!-- Color Picker -->
+        <div class="form-group">
+          <label class="form-label">Accent Color</label>
+          <div class="color-options">
+            <div class="color-swatch selected" data-color="#6366f1" style="background:#6366f1;" title="Violet"></div>
+            <div class="color-swatch" data-color="#8b5cf6" style="background:#8b5cf6;" title="Purple"></div>
+            <div class="color-swatch" data-color="#06b6d4" style="background:#06b6d4;" title="Cyan"></div>
+            <div class="color-swatch" data-color="#ec4899" style="background:#ec4899;" title="Pink"></div>
+            <div class="color-swatch" data-color="#10b981" style="background:#10b981;" title="Green"></div>
+            <div class="color-swatch" data-color="#f59e0b" style="background:#f59e0b;" title="Amber"></div>
+            <div class="color-swatch" data-color="#ef4444" style="background:#ef4444;" title="Red"></div>
+          </div>
+        </div>
+
+        <!-- 3D Shape Picker -->
+        <div class="form-group">
+          <label class="form-label">3D Preview Shape</label>
+          <div class="shape-options">
+            <button type="button" class="shape-btn selected" data-shape="torusknot">Torus Knot</button>
+            <button type="button" class="shape-btn" data-shape="torus">Torus</button>
+            <button type="button" class="shape-btn" data-shape="sphere">Sphere</button>
+            <button type="button" class="shape-btn" data-shape="icosahedron">Icosahedron</button>
+            <button type="button" class="shape-btn" data-shape="octahedron">Octahedron</button>
+            <button type="button" class="shape-btn" data-shape="box">Cube</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="modal-footer">
+        <button class="btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn-glow" id="save-btn" onclick="document.getElementById('item-form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}))">
+          Save Project
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
